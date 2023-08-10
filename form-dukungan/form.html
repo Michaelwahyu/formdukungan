@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Form Dukungan - Boedhi Harjanto/title>
+        <!--- CSS --->
+        <link rel="stylesheet" href="style.css" />
+        <script>
+            function toggleSections() {
+                var kecamatanSelect = document.getElementById("kecamatanSelect");
+                var selectedKecamatan = kecamatanSelect.options[kecamatanSelect.selectedIndex].text;
+                var kelurahanSection = document.getElementById("kelurahanSection");
+                var kelurahanSelect = document.getElementById("kelurahanSelect");
+                var otherSections = document.getElementById("otherSections");
+
+                if (selectedKecamatan === "Kecamatan") {
+                    kelurahanSection.style.display = "none";
+                    otherSections.style.display = "none";
+                } else {
+                    kelurahanSection.style.display = "block";
+                    otherSections.style.display = "block";
+                }
+
+                if (selectedKecamatan === "Serpong") {
+                    kelurahanSelect.innerHTML = `
+                    <option hidden>Kelurahan</option>
+                    <option>Buaran</option>
+                    <option>Ciater</option>
+                    <option>Cilenggang</option>
+                    <option>Lengkong Gudang</option>
+                    <option>Lengkong Gudang Timur</option>
+                    <option>Lengkong Wetan</option>
+                    <option>Rawa Mekar Jaya</option>
+                    <option>Rawa Buntu</option>
+                    <option>Serpong</option>
+                `;
+                } else if (selectedKecamatan === "Setu") {
+                    kelurahanSelect.innerHTML = `
+                    <option hidden>Kelurahan</option>
+                    <option>Babakan</option>
+                    <option>Bakti Jaya</option>
+                    <option>Kademangan</option>
+                    <option>Keranggan</option>
+                    <option>Muncul</option>
+                    <option>Setu</option>
+                `;
+                } else {
+                    kelurahanSelect.innerHTML = `<option hidden>Kelurahan</option>`;
+                }
+            }
+
+            function validateAge() {
+                var umurSelect = document.getElementById("umurSelect");
+                var selectedUmur = umurSelect.options[umurSelect.selectedIndex].text;
+
+                if (selectedUmur === "Dibawah 17 tahun") {
+                    alert("Anda harus berusia 17 tahun atau lebih untuk mengakses formulir.");
+                    return false;
+                }
+                return true;
+            }
+        </script>
+</head>
+
+<body>
+    <section class="container">
+        <header>Formulir Dukungan</header>
+        <form action="https://michaelwahyu.github.io/boedhiharjanto/" class="form" onsubmit="return validateAge()">
+            <div class="column">
+                <div class="select-box">
+                    <select id="kecamatanSelect" onchange="toggleSections()">
+                        <option hidden selected>Kecamatan</option>
+                        <option>Serpong</option>
+                        <option>Setu</option>
+                    </select>
+                </div>
+            </div>
+            <div class="column" id="kelurahanSection" style="display: none;">
+                <div class="select-box">
+                    <select id="kelurahanSelect">
+                        <option hidden>Kelurahan</option>
+                    </select>
+                </div>
+            </div>
+            <div id="otherSections" style="display: none;">
+                <div class="input-box">
+                    <label>Nama</label>
+                    <input type="text" placeholder="Masukkan Nama Lengkap Anda" required />
+                </div>
+
+                <div class="input-box">
+                    <label>Email</label>
+                    <input type="text" placeholder="Masukkan Alamat Email Anda" required />
+                </div>
+
+                <div class="gender-box">
+                    <h3>Jenis Kelamin</h3>
+                    <div class="gender-option">
+                        <div class="gender">
+                            <input type="radio" id="check-male" name="gender" checked />
+                            <label for="check-male">Laki-laki</label>
+                        </div>
+                        <div class="gender">
+                            <input type="radio" id="check-female" name="gender" />
+                            <label for="check-female">Perempuan</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <label>No Handphone</label>
+                    <input type="number" placeholder="Masukkan No Handphone Anda" required />
+                </div>
+                <div class="input-box address">
+                    <label>Alamat</label>
+                    <input type="text" placeholder="Masukkan Alamat Lengkap Anda" required />
+                </div>
+                <div class="column">
+                    <div class="select-box">
+                        <select id="umurSelect">
+                            <option hidden selected>Umur</option>
+                            <option>Dibawah 17 tahun</option>
+                            <option>17 tahun atau lebih</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <button>Submit</button>
+        </form>
+    </section>
+</body>
+
+</html>
